@@ -1,4 +1,4 @@
-# UI_download_novel
+# Wuxii
 App to download Novel from wuxiaworld, webnovel.
 
 Play:
