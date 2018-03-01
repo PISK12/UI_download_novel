@@ -7,6 +7,8 @@ from urllib.request import Request, urlopen
 from WebSiteParentsClass import BaseWebSite
 from Tools import Tools
 
+from icecream import ic
+
 class Qidian(BaseWebSite):
 
 	#used
@@ -19,6 +21,7 @@ class Qidian(BaseWebSite):
 		adres = "https://www.webnovel.com/apiajax/chapter/GetChapterList?_csrfToken=vu0HnBRS6ValeqUdXH2MJaH9TgldX4UM1lkCG6Qp&bookId=%s&_=1501845622524" % number
 		req = Request(adres, headers={'User-Agent': 'Mozilla/5.0'})
 		webpage = urlopen(req).read()
+		webpage=webpage.decode("utf-8") 
 		webpage = json.loads(webpage)
 		chapterItems = webpage["data"]["chapterItems"]
 		bookName = webpage["data"]["bookInfo"]["bookName"]
@@ -36,6 +39,7 @@ class Qidian(BaseWebSite):
 
 	#used
 	def download_www_to_text(self, chapterId, bookId):
+
 		www = "https://www.webnovel.com/book/%s/%s" % (bookId, chapterId)
 
 		soup = self.make_soup(www)
@@ -52,21 +56,24 @@ class Qidian(BaseWebSite):
 
 	#used
 	def all_title_and_link_from_translating(self, number_web=1):
+		adres="https://www.webnovel.com/apiajax/category/ajax?_csrfToken=CG3DKAp8Hjip1Iq4Jey0c72Y7KpGXieFsC660cNf&orderBy=4&pageIndex="
 
 		dict_with_all_title_and_links={}
 		id = "bookId"
 		name = "bookName"
+
 		while True:
-			adres_all_title_ajax = "https://www.webnovel.com/apiajax/listing/popularAjax?_csrfToken=vu0HnBRS6ValeqUdXH2MJaH9TgldX4UM1lkCG6Qp&category=&pageIndex=" + str(
+			adres_all_title_ajax = adres + str(
 				number_web)
 			req = Request(adres_all_title_ajax, headers={'User-Agent': 'Mozilla/5.0'})
 			webpage = urlopen(req).read()
+			webpage=webpage.decode("utf-8") 
 			webpage = json.loads(webpage)
 			items = webpage["data"]["items"]
 			if not len(items): break
 			number_web+=1
 
 			for dic in items:
-
 				dict_with_all_title_and_links[dic["bookName"]]=dic["bookId"]
+
 		return dict_with_all_title_and_links
