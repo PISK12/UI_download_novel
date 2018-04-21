@@ -5,7 +5,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Wuxii.main_window import Ui_Window as Ui_MainWindow
 
-from Wuxii.PreferencesWindow import PreferencesWidget
 from Wuxii.back import Back
 
 
@@ -17,10 +16,6 @@ class MainWindow(Ui_MainWindow):
         self.back = Back()
         self.app = QtWidgets.QApplication(argv)
         self.Window = QtWidgets.QMainWindow()
-
-    def display_PreferencesWidget(self):
-        # PreferencesWidget()
-        pass
 
     def play(self):
         self.setupUi(self.Window)
