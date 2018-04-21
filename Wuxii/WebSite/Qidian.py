@@ -8,9 +8,8 @@ from urllib.request import Request, urlopen
 #from main_Classes import BaseWebSite
 #from main_Classes import Logic
 
-from
-.WebSiteParentsClass import BaseWebSite
-from .Tools import Tools
+from Wuxii.WebSiteParentsClass import BaseWebSite
+from Wuxii.Tools import Tools
 
 from icecream import ic
 
