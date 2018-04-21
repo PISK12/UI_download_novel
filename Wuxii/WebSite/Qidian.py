@@ -5,8 +5,7 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 import json
 from urllib.request import Request, urlopen
 
-#from main_Classes import BaseWebSite
-#from main_Classes import Logic
+
 
 from Wuxii.WebSiteParentsClass import BaseWebSite
 from Wuxii.Tools import Tools
@@ -22,20 +21,20 @@ class Qidian(BaseWebSite):
 
     # used
     def get_chapter(self, number):
-
-        adres = "https://www.webnovel.com/apiajax/chapter/GetChapterList?_csrfToken=vu0HnBRS6ValeqUdXH2MJaH9TgldX4UM1lkCG6Qp&bookId=%s&_=1501845622524" % number
+        token="2IO9r6y4aWlN7eJQ6m3dq5gGJwkLPOMHY8p83ICZ"
+        adres="https://www.webnovel.com/apiajax/chapter/GetChapterList?_csrfToken={}&bookId={}&_=1524300826628".format(token,number)
         req = Request(adres, headers={'User-Agent': 'Mozilla/5.0'})
         webpage = urlopen(req).read()
         webpage = webpage.decode("utf-8")
         webpage = json.loads(webpage)
-        chapterItems = webpage["data"]["chapterItems"]
+        chapterItems = webpage["data"]["volumeItems"][0]['chapterItems']
         bookName = webpage["data"]["bookInfo"]["bookName"]
         self.title = bookName
         bookId = webpage["data"]["bookInfo"]["bookId"]
         for i in chapterItems:
-            text = self.download_www_to_text(i["chapterId"], bookId)
-            name = "%s-%s-%s" % (bookName, str(i["chapterIndex"]).rjust(
-                4).replace(" ", "0"), i["chapterName"])
+            text = self.download_www_to_text(i["id"], bookId)
+            name = "%s-%s-%s" % (bookName, str(i["index"]).rjust(
+                4).replace(" ", "0"), i["name"])
             name = self.clean_to_name_file(name.replace(" ", "_"))
             self.toTextFile(text, name)
             self.add_text_to_listWidget_from_Gui(name)

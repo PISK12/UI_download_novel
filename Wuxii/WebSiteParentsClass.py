@@ -12,11 +12,13 @@ from Wuxii.Tools import Tools
 
 from PyQt5.QtCore import QThread
 from bs4 import BeautifulSoup
+import requests
 
 
 class BaseWebSite(QThread):
     def __init__(self, class_ToFile):
         super(QThread, self).__init__()
+
 
         self.class_ToFile = class_ToFile
         self.toTextFile = self.class_ToFile.toTextFile
@@ -91,3 +93,4 @@ class BaseWebSite(QThread):
 
     def stop(self):
         self.work = False
+
