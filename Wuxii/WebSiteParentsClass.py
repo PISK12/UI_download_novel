@@ -16,10 +16,11 @@ import requests
 
 
 class BaseWebSite(QThread):
+    MAIN_ADRES=""
+
     def __init__(self, class_ToFile):
         super(QThread, self).__init__()
-
-
+        self.cacheCookies={}
         self.class_ToFile = class_ToFile
         self.toTextFile = self.class_ToFile.toTextFile
         self.title = ""
@@ -94,3 +95,11 @@ class BaseWebSite(QThread):
     def stop(self):
         self.work = False
 
+    def getCookies(self,adres="")->dict:
+        if adres in self.cacheCookies:
+            pass
+        else:
+            session = requests.Session()
+            response = session.get(adres)
+            self.cacheCookies[adres]=session.cookies.get_dict()
+        return self.cacheCookies[adres]

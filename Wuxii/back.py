@@ -1,6 +1,6 @@
 from Wuxii.Tools import Tools
 from Wuxii.WriteOrReadFromFile import ToFile
-from Wuxii.WebSite.WuxiaWorld import Wuxiaworld
+from Wuxii.WebSite.Wuxiaworld import Wuxiaworld
 from Wuxii.WebSite.Qidian import Qidian
 
 

@@ -8,3 +8,4 @@ task.txt
 *.sublime-project
 venv/
 __pycache__/
+test.py

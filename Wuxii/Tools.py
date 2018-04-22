@@ -51,13 +51,3 @@ class Tools():
         number -= start
         return lista[lista.index(sort_list[number])]
 
-    cacheCookies={}
-    @staticmethod
-    def getCookies(web):
-        if web in Tools.cacheCookies:
-            pass
-        else:
-            session = requests.Session()
-            response = session.get(web)
-            Tools.cacheCookies[web]=session.cookies.get_dict()
-        return Tools.cacheCookies[web]

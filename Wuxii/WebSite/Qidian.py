@@ -1,11 +1,8 @@
 import sys
 sys.path.append("..")  # Adds higher directory to python modules path.
 
-
 import json
 from urllib.request import Request, urlopen
-
-
 
 from Wuxii.WebSiteParentsClass import BaseWebSite
 from Wuxii.Tools import Tools
@@ -14,14 +11,14 @@ from icecream import ic
 
 
 class Qidian(BaseWebSite):
-
+    MAIN_ADRES="https://www.webnovel.com"
     # used
     def running(self):
         self.get_chapter(self.link)
 
     # used
     def get_chapter(self, number):
-        token="2IO9r6y4aWlN7eJQ6m3dq5gGJwkLPOMHY8p83ICZ"
+        token=self.getCookies(Qidian.MAIN_ADRES)["_csrfToken"]
         adres="https://www.webnovel.com/apiajax/chapter/GetChapterList?_csrfToken={}&bookId={}&_=1524300826628".format(token,number)
         req = Request(adres, headers={'User-Agent': 'Mozilla/5.0'})
         webpage = urlopen(req).read()
@@ -59,8 +56,7 @@ class Qidian(BaseWebSite):
 
     # used
     def all_title_and_link_from_translating(self, number_web=1):
-        adres = "https://www.webnovel.com/apiajax/category/ajax?_csrfToken=CG3DKAp8Hjip1Iq4Jey0c72Y7KpGXieFsC660cNf&orderBy=4&pageIndex="
-
+        adres = "https://www.webnovel.com/apiajax/category/ajax?_csrfToken={}&orderBy=4&pageIndex=".format(self.getCookies(Qidian.MAIN_ADRES)["_csrfToken"])
         dict_with_all_title_and_links = {}
         id = "bookId"
         name = "bookName"
@@ -77,8 +73,6 @@ class Qidian(BaseWebSite):
             if not len(items):
                 break
             number_web += 1
-
             for dic in items:
                 dict_with_all_title_and_links[dic["bookName"]] = dic["bookId"]
-
         return dict_with_all_title_and_links
