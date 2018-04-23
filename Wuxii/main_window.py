@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main_window02.ui'
+# Form implementation generated from reading ui file 'E:\GoogleDrive\Informatyka\Projekty\Desktop\Wuxii\Wuxii\main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,12 +11,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Window(object):
     def setupUi(self, Window):
         Window.setObjectName("Window")
-        Window.resize(341, 372)
+        Window.setEnabled(True)
+        Window.resize(431, 370)
         Window.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(Window)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 318, 311))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 411, 311))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -44,7 +45,7 @@ class Ui_Window(object):
         self.verticalLayout.addWidget(self.startDownloadButton)
         Window.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Window)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 341, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 431, 26))
         self.menubar.setObjectName("menubar")
         self.menuMenu = QtWidgets.QMenu(self.menubar)
         self.menuMenu.setObjectName("menuMenu")
