@@ -31,26 +31,23 @@ class Wuxiaworld(BaseWebSite):
         for chapter in chapters:
             yield chapter.find("a").get("href")
 
-    # get from website all titles with links
-    def all_title_and_link_from_translating(self):
+    def _get_all_title_and_link_from_translating(self):
         ic()
         dict_with_all_title_and_links = {}
         for link_type in Wuxiaworld.OPTIONS_DIR:
             raw_link = "{}{}".format(
                 Wuxiaworld.MAIN_ADRES, Wuxiaworld.OPTIONS_DIR[link_type])
             soup = self.make_soup(raw_link)
-            for part in soup.find_all('a'):
-                if "/novel/" in part.get('href'):
-                    if part.get('href').count("/") == 2:
-                        link = part.get('href').strip()
-                        title = part.text.strip()
-                        if title in dict_with_all_title_and_links:
-                            pass
-                        elif "" == title:
-                            pass
-                        else:
-                            dict_with_all_title_and_links[title] = link
+            for parts in soup.find_all("ul", {"class": "media-list genres-list"}):
+                for part in parts.find_all("a", {"class": "text-white"}):
+                    if part.h4 not in dict_with_all_title_and_links:
+                        dict_with_all_title_and_links[part.h4.text] = part.get("href")
         return dict_with_all_title_and_links
+
+    # get from website all titles with links
+    def all_title_and_link_from_translating(self):
+        return self._get_all_title_and_link_from_translating()
+
 
     def _download_www_to_text(self, adres):
         ic()

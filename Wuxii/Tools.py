@@ -1,28 +1,23 @@
-import pickle
-
-import requests
+import json
 
 
 class Tools():
     @staticmethod
     def save_obj(obj, name):
-        with open(name + ".pkl", "wb") as file:
-            pickle.dump(obj, file, pickle.HIGHEST_PROTOCOL)
+
+        with open(name + ".json", "w") as file:
+            json.dump(obj, file)
 
     @staticmethod
     def load_obj(name):
         try:
-            with open(name + ".pkl", "rb") as file:
-                return pickle.load(file)
+            with open(name + ".json", "r") as file:
+                return json.load(file)
         except EOFError as e:
             return {}
         except FileNotFoundError as e:
             Tools.save_obj({}, name)
             return {}
-        else:
-            pass
-        finally:
-            pass
 
     @staticmethod
     def _which_number(max, text="give me number", min=0):

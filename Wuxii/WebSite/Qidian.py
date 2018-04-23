@@ -5,9 +5,6 @@ import json
 from urllib.request import Request, urlopen
 
 from Wuxii.WebSiteParentsClass import BaseWebSite
-from Wuxii.Tools import Tools
-
-from icecream import ic
 
 
 class Qidian(BaseWebSite):
@@ -54,9 +51,9 @@ class Qidian(BaseWebSite):
 
         return text.replace("\n", "\r\n")
 
-    # used
-    def all_title_and_link_from_translating(self, number_web=1):
-        adres = "https://www.webnovel.com/apiajax/category/ajax?_csrfToken={}&orderBy=4&pageIndex=".format(self.getCookies(Qidian.MAIN_ADRES)["_csrfToken"])
+    def _get_all_title_and_link_from_translating(self, number_web=1):
+        adres = "https://www.webnovel.com/apiajax/category/ajax?_csrfToken={}&orderBy=4&pageIndex=".format(
+            self.getCookies(Qidian.MAIN_ADRES)["_csrfToken"])
         dict_with_all_title_and_links = {}
         id = "bookId"
         name = "bookName"
@@ -65,7 +62,7 @@ class Qidian(BaseWebSite):
             adres_all_title_ajax = adres + str(
                 number_web)
             req = Request(adres_all_title_ajax, headers={
-                          'User-Agent': 'Mozilla/5.0'})
+                'User-Agent': 'Mozilla/5.0'})
             webpage = urlopen(req).read()
             webpage = webpage.decode("utf-8")
             webpage = json.loads(webpage)
@@ -76,3 +73,7 @@ class Qidian(BaseWebSite):
             for dic in items:
                 dict_with_all_title_and_links[dic["bookName"]] = dic["bookId"]
         return dict_with_all_title_and_links
+
+    # used
+    def all_title_and_link_from_translating(self, number_web=1):
+        return self._get_all_title_and_link_from_translating(number_web)
