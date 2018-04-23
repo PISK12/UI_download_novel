@@ -3,10 +3,9 @@ from os.path import abspath
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from main_window import Ui_Window as Ui_MainWindow
+from Wuxii.main_window import Ui_Window as Ui_MainWindow
 
-from PreferencesWindow import PreferencesWidget
-from back import Back
+from Wuxii.back import Back
 
 
 class MainWindow(Ui_MainWindow):
@@ -17,11 +16,6 @@ class MainWindow(Ui_MainWindow):
         self.back = Back()
         self.app = QtWidgets.QApplication(argv)
         self.Window = QtWidgets.QMainWindow()
-
-    def display_PreferencesWidget(self):
-        #PreferencesWidget()
-        pass
-
 
     def play(self):
         self.setupUi(self.Window)
@@ -38,7 +32,8 @@ class MainWindow(Ui_MainWindow):
 
     def get_Directory(self):
         if self.startDownloadButton.isEnabled():
-            self.back.change_main_catalog(abspath(str(QtWidgets.QFileDialog.getExistingDirectory())))
+            self.back.change_main_catalog(
+                abspath(str(QtWidgets.QFileDialog.getExistingDirectory())))
         else:
             print("test_get_Directory_3")
             self.listWidget.insertItem(0, "I can't")
@@ -48,15 +43,15 @@ class MainWindow(Ui_MainWindow):
 
         self.comboBoxTop.addItem("")
         self.comboBoxTop.addItems([name for name in self.back.webs])
-        self.comboBoxTop.currentTextChanged.connect(self.change_current_Text_in_ComboBox_List_Website)
+        self.comboBoxTop.currentTextChanged.connect(
+            self.change_current_Text_in_ComboBox_List_Website)
 
     def action_menu_widgets(self):
         self.actionSelect_Catalog.triggered.connect(self.get_Directory)
         self.actionStop.triggered.connect(self.stop)
-        self.actionPreferences.triggered.connect(self.display_PreferencesWidget)
-        self.actionAbout_me.triggered.connect(self.display_PreferencesWidget)
-        self.actionAbout_App.triggered.connect(self.display_PreferencesWidget)
-
+        #self.actionPreferences.triggered.connect(self.display_PreferencesWidget)
+        #self.actionAbout_me.triggered.connect(self.display_PreferencesWidget)
+        #self.actionAbout_App.triggered.connect(self.display_PreferencesWidget)
 
     def change_current_Text_in_ComboBox_List_Website(self):
         if self.last_current_Text_in_ComboBox_comboBoxTop != self.comboBoxTop.currentText():

@@ -6,5 +6,6 @@
 *.pkl
 task.txt
 *.sublime-project
-*.ui
-*.ui
+venv/
+__pycache__/
+test.py

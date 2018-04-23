@@ -1,4 +1,4 @@
-from front_app import MainWindow
+from Wuxii.front_app import MainWindow
 
 if __name__ == '__main__':
-	MainWindow().play()
+    MainWindow().play()
