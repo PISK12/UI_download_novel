@@ -1,6 +1,5 @@
 import sys
 sys.path.append("..")  # Adds higher directory to python modules path.
-
 import json
 from urllib.request import Request, urlopen
 
@@ -21,19 +20,20 @@ class Qidian(BaseWebSite):
         webpage = urlopen(req).read()
         webpage = webpage.decode("utf-8")
         webpage = json.loads(webpage)
-        chapterItems = webpage["data"]["volumeItems"][0]['chapterItems']
+        # chapterItems = webpage["data"]["volumeItems"][0]['chapterItems']
         bookName = webpage["data"]["bookInfo"]["bookName"]
         self.title = bookName
         bookId = webpage["data"]["bookInfo"]["bookId"]
-        for i in chapterItems:
-            text = self.download_www_to_text(i["id"], bookId)
-            name = "%s-%s-%s" % (bookName, str(i["index"]).rjust(
-                4).replace(" ", "0"), i["name"])
-            name = self.clean_to_name_file(name.replace(" ", "_"))
-            self.toTextFile(text, name)
-            self.add_text_to_listWidget_from_Gui(name)
-            if not self.work:
-                break
+        for x in range(len(webpage["data"]["volumeItems"])):
+            for i in webpage["data"]["volumeItems"][x]['chapterItems']:
+                text = self.download_www_to_text(i["id"], bookId)
+                name = "%s-%s-%s" % (bookName, str(i["index"]).rjust(
+                    4).replace(" ", "0"), i["name"])
+                name = self.clean_to_name_file(name.replace(" ", "_"))
+                self.toTextFile(text, name)
+                self.add_text_to_listWidget_from_Gui(name)
+                if not self.work:
+                    break
 
     # used
     def download_www_to_text(self, chapterId, bookId):

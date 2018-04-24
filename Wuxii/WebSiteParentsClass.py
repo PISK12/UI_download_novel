@@ -14,7 +14,7 @@ class BaseWebSite(QThread):
 
     def __init__(self, class_ToFile):
         ic.enable()
-        # ic.disable()
+        ic.disable()
         super(QThread, self).__init__()
         self.cacheCookies = {}
         self.class_ToFile = class_ToFile

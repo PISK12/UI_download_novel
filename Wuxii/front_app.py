@@ -1,11 +1,10 @@
-from sys import exit, argv
 from os.path import abspath
+from sys import exit, argv
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-from Wuxii.main_window import Ui_Window as Ui_MainWindow
+from PyQt5 import QtWidgets
 
 from Wuxii.back import Back
+from Wuxii.main_window import Ui_Window as Ui_MainWindow
 
 
 class MainWindow(Ui_MainWindow):
@@ -49,9 +48,6 @@ class MainWindow(Ui_MainWindow):
     def action_menu_widgets(self):
         self.actionSelect_Catalog.triggered.connect(self.get_Directory)
         self.actionStop.triggered.connect(self.stop)
-        #self.actionPreferences.triggered.connect(self.display_PreferencesWidget)
-        #self.actionAbout_me.triggered.connect(self.display_PreferencesWidget)
-        #self.actionAbout_App.triggered.connect(self.display_PreferencesWidget)
 
     def change_current_Text_in_ComboBox_List_Website(self):
         if self.last_current_Text_in_ComboBox_comboBoxTop != self.comboBoxTop.currentText():

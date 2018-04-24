@@ -9,3 +9,5 @@ task.txt
 venv/
 __pycache__/
 test.py
+/offline_data.json
+offline_data.json

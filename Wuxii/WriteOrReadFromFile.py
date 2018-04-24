@@ -10,7 +10,7 @@ class ToFile(object):
     FORMAT_FILE = ["txt", "pdf"]
 
     def __init__(self):
-        # ic.enable()
+        ic.enable()
         ic.disable()
 
 
