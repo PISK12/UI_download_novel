@@ -70,9 +70,12 @@ class Ui_Window(object):
         self.actionAbout_App.setObjectName("actionAbout_App")
         self.actionReload_2 = QtWidgets.QAction (Window)
         self.actionReload_2.setObjectName ("actionReload_2")
+        self.actionSettings = QtWidgets.QAction (Window)
+        self.actionSettings.setObjectName ("actionSettings")
         self.menuMenu.addAction(self.actionSelect_Catalog)
         self.menuMenu.addAction(self.actionStop)
         self.menuMenu.addAction (self.actionReload_2)
+        self.menuMenu.addAction (self.actionSettings)
         self.menuOther.addAction(self.actionAbout_App)
         self.menuOther.addAction(self.actionAbout_me)
         self.menubar.addAction(self.menuMenu.menuAction())
@@ -94,6 +97,7 @@ class Ui_Window(object):
         self.actionAbout_me.setText(_translate("Window", "About Me"))
         self.actionAbout_App.setText(_translate("Window", "About App"))
         self.actionReload_2.setText (_translate ("Window", "Reload"))
+        self.actionSettings.setText (_translate ("Window", "Settings"))
 
 
 if __name__ == "__main__" :

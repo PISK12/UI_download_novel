@@ -116,6 +116,7 @@
     <addaction name="actionSelect_Catalog"/>
     <addaction name="actionStop"/>
        <addaction name="actionReload_2"/>
+       <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuOther">
     <property name="title">
@@ -161,6 +162,11 @@
      <action name="actionReload_2">
          <property name="text">
              <string>Reload</string>
+         </property>
+     </action>
+     <action name="actionSettings">
+         <property name="text">
+             <string>Settings</string>
          </property>
      </action>
  </widget>
