@@ -29,7 +29,7 @@ class Qidian(BaseWebSite):
                 text = self.download_www_to_text(i["id"], bookId)
                 name = "%s-%s-%s" % (bookName, str(i["index"]).rjust(
                     4).replace(" ", "0"), i["name"])
-                name = self.clean_to_name_file(name.replace(" ", "_"))
+                name = self._clean_to_name_file (name.replace (" ", "_"))
                 self.toTextFile(text, name)
                 self.add_text_to_listWidget_from_Gui(name)
                 if not self.work:

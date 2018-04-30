@@ -14,7 +14,7 @@ class BaseWebSite(QThread):
 
     def __init__(self, class_ToFile):
         ic.enable()
-        ic.disable()
+        # ic.disable()
         super(QThread, self).__init__()
         self.cacheCookies = {}
         self.class_ToFile = class_ToFile
@@ -42,7 +42,7 @@ class BaseWebSite(QThread):
     def getTitle(self, tite_novel):
         ic()
         self.title = tite_novel
-        self.title = self.clean_from_bad_characters(
+        self.title = self._clean_from_bad_characters(
             self.title).replace(" ", "_")
         if self.title[-1] == "_":
             self.title = self.title[:-1]
@@ -63,14 +63,14 @@ class BaseWebSite(QThread):
             ic(url)
             exit()
 
-    def clean_to_name_file(self, text):
+    def _clean_to_name_file (self, text):
         new = ""
         for l in text:
             if l not in ("/", "\\", "|", "'", ":", "?", ">", "<"):
                 new += l
         return new
 
-    def clean_from_bad_characters(self, text):
+    def _clean_from_bad_characters (self, text):
         ic()
         new = ""
         for i in text:

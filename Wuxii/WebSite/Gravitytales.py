@@ -1,5 +1,4 @@
 from WebSiteParentsClass import BaseWebSite
-from Tools import Tools
 
 
 class GravityTales(BaseWebSite):

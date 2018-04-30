@@ -1,11 +1,12 @@
 from Wuxii.Tools import Tools
-from Wuxii.WriteOrReadFromFile import ToFile
-from Wuxii.WebSite.Wuxiaworld import Wuxiaworld
+from Wuxii.WebSite.Liberspark import Liberspark
 from Wuxii.WebSite.Qidian import Qidian
+from Wuxii.WebSite.Wuxiaworld import Wuxiaworld
+from Wuxii.WriteOrReadFromFile import ToFile
 
 
 class Back:
-    webs = {"Wuxiaworld": Wuxiaworld, "Qidian": Qidian}
+    webs = { "Wuxiaworld" : Wuxiaworld, "Qidian" : Qidian, "Liberspark" : Liberspark }
 
     def __init__(self, *args):
         self.webs = Back.webs
