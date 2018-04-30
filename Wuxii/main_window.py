@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\GoogleDrive\Informatyka\Projekty\Desktop\Wuxii\Wuxii\main_window.ui'
+# Form implementation generated from reading ui file 'main_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -12,12 +12,13 @@ class Ui_Window(object):
     def setupUi(self, Window):
         Window.setObjectName("Window")
         Window.setEnabled(True)
-        Window.resize (431, 375)
+        Window.resize (596, 396)
+        Window.setLocale (QtCore.QLocale (QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         Window.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(Window)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 411, 311))
+        self.verticalLayoutWidget.setGeometry (QtCore.QRect (10, 10, 581, 311))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -45,7 +46,7 @@ class Ui_Window(object):
         self.verticalLayout.addWidget(self.startDownloadButton)
         Window.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Window)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 431, 26))
+        self.menubar.setGeometry (QtCore.QRect (0, 0, 596, 28))
         self.menubar.setObjectName("menubar")
         self.menuMenu = QtWidgets.QMenu(self.menubar)
         self.menuMenu.setObjectName("menuMenu")
@@ -67,9 +68,11 @@ class Ui_Window(object):
         self.actionAbout_me.setObjectName("actionAbout_me")
         self.actionAbout_App = QtWidgets.QAction(Window)
         self.actionAbout_App.setObjectName("actionAbout_App")
+        self.actionReload_2 = QtWidgets.QAction (Window)
+        self.actionReload_2.setObjectName ("actionReload_2")
         self.menuMenu.addAction(self.actionSelect_Catalog)
         self.menuMenu.addAction(self.actionStop)
-        self.menuMenu.addAction(self.actionPreferences)
+        self.menuMenu.addAction (self.actionReload_2)
         self.menuOther.addAction(self.actionAbout_App)
         self.menuOther.addAction(self.actionAbout_me)
         self.menubar.addAction(self.menuMenu.menuAction())
@@ -80,7 +83,7 @@ class Ui_Window(object):
 
     def retranslateUi(self, Window):
         _translate = QtCore.QCoreApplication.translate
-        Window.setWindowTitle(_translate("Window", "MainWindow"))
+        Window.setWindowTitle (_translate ("Window", "Wuxii"))
         self.startDownloadButton.setText(_translate("Window", "Download"))
         self.menuMenu.setTitle(_translate("Window", "Menu"))
         self.menuOther.setTitle(_translate("Window", "Other"))
@@ -90,4 +93,15 @@ class Ui_Window(object):
         self.actionPreferences.setText(_translate("Window", "Preferences"))
         self.actionAbout_me.setText(_translate("Window", "About Me"))
         self.actionAbout_App.setText(_translate("Window", "About App"))
+        self.actionReload_2.setText (_translate ("Window", "Reload"))
 
+
+if __name__ == "__main__" :
+    import sys
+
+    app = QtWidgets.QApplication (sys.argv)
+    Window = QtWidgets.QMainWindow ()
+    ui = Ui_Window ()
+    ui.setupUi (Window)
+    Window.show ()
+    sys.exit (app.exec_ ())

@@ -39,5 +39,7 @@ class Liberspark (BaseWebSite) :
 		ic ()
 		self.link = self._get_link_first_chapter (self.link)
 		while self.link != None :
-			# ic(self.link)
+			self.add_text_to_listWidget_from_Gui ("/".join (self.link.split ("/") [4 :]))
 			self._download_www_to_text (self.link)
+			if not self.work :
+				break

@@ -19,10 +19,11 @@ class Wuxiaworld(BaseWebSite):
 
     def running(self):
         ic()
-
         for adres in self._get_all_chapters(Wuxiaworld.MAIN_ADRES + self.link):
             self.add_text_to_listWidget_from_Gui(adres)
             self._download_www_to_text(Wuxiaworld.MAIN_ADRES + adres)
+            if not self.work :
+	            break
 
     def _get_all_chapters(self, link):
         ic()

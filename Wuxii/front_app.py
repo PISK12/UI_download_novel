@@ -27,19 +27,22 @@ class MainWindow(Ui_MainWindow):
         if not self.startDownloadButton.isEnabled():
             self.back.stop()
         else:
-            self.listWidget.insertItem(0, "I can't")
+            self.addText ("I can't")
+
+    def reload (self) :
+        self.back.clear_offline_data ()
+        self.addText ("The database was cleared")
+
 
     def get_Directory(self):
         if self.startDownloadButton.isEnabled():
             self.back.change_main_catalog(
                 abspath(str(QtWidgets.QFileDialog.getExistingDirectory())))
         else:
-            print("test_get_Directory_3")
-            self.listWidget.insertItem(0, "I can't")
+            self.addText ("I can't")
 
     def action_widgets(self):
         self.startDownloadButton.clicked.connect(self.click)
-
         self.comboBoxTop.addItem("")
         self.comboBoxTop.addItems([name for name in self.back.webs])
         self.comboBoxTop.currentTextChanged.connect(
@@ -48,6 +51,7 @@ class MainWindow(Ui_MainWindow):
     def action_menu_widgets(self):
         self.actionSelect_Catalog.triggered.connect(self.get_Directory)
         self.actionStop.triggered.connect(self.stop)
+        self.actionReload_2.triggered.connect (self.reload)
 
     def change_current_Text_in_ComboBox_List_Website(self):
         if self.last_current_Text_in_ComboBox_comboBoxTop != self.comboBoxTop.currentText():
@@ -66,3 +70,6 @@ class MainWindow(Ui_MainWindow):
                 self.comboBoxbottom.currentText(), self.back.all_title_and_link_from_translating()[
                     self.comboBoxbottom.currentText()], self.startDownloadButton, self.listWidget
             )
+
+    def addText (self, text) :
+        self.listWidget.insertItem (0, text)
