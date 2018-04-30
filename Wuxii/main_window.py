@@ -12,7 +12,7 @@ class Ui_Window(object):
     def setupUi(self, Window):
         Window.setObjectName("Window")
         Window.setEnabled(True)
-        Window.resize(431, 370)
+        Window.resize (431, 375)
         Window.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(Window)
         self.centralwidget.setObjectName("centralwidget")
