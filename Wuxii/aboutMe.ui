@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>FormAboutMe</class>
+    <widget class="QWidget" name="FormAboutMe">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>397</width>
+                <height>61</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>About Me</string>
+        </property>
+        <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+        </property>
+        <widget class="QLabel" name="label_2">
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>10</y>
+                    <width>261</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Autor https://github.com/PISK12</string>
+            </property>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>
