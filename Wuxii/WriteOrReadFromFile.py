@@ -13,7 +13,6 @@ class ToFile(object):
         ic.enable()
         ic.disable()
 
-
         self.format = ToFile.FORMAT_FILE[0]
         self.chack_catalog = False
         self.toZip = False
@@ -33,7 +32,6 @@ class ToFile(object):
         else:
             print(self.format)
             self.toZip = False
-            print("why you life, I have never see you")
             exit()
 
         if self.toZip:
@@ -46,10 +44,11 @@ class ToFile(object):
 
     def set_title(self, title):
         ic()
-        self.title = title
+        self.title = ToFile.make_good_text_to_sava_as_catalog(title)
 
     def toFileTxt(self, text, name):
         ic()
+        name = ToFile.make_good_text_to_sava_as_catalog(name)
         self.title = self.title.strip()
         if not os.path.isdir(os.path.join(self.main_catalog, self.title)):
             os.makedirs(os.path.join(self.main_catalog, self.title))
@@ -80,3 +79,25 @@ class ToFile(object):
         with ZipFile("%s_%s.zip" % (self.title, date.today()), "w") as zipfile:
             for file in self.files:
                 zipfile.write(os.path.join(self.title, file))
+
+    @staticmethod
+    def make_good_text_to_sava_as_catalog(text: str)->str:
+        text = text.replace("'", "")
+        text = text.replace('"', "")
+        text = text.replace("\\", "")
+        text = text.replace("/", "")
+        text = text.replace(".", "")
+        text = text.replace(",", "")
+        text = text.replace("#", "")
+        text = text.replace("%", "")
+        text = text.replace("&", "")
+        text = text.replace("*", "")
+        text = text.replace(":", "")
+        text = text.replace("?", "")
+        text = text.replace("|", "")
+        text = text.replace(r"\"", "")
+        text = text.replace(r"\t", "")
+        text = text.replace(r"\r\n", "")
+        text = text.replace(r"\n", "")
+
+        return text

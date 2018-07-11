@@ -7,11 +7,12 @@ from Wuxii.WriteOrReadFromFile import ToFile
 
 class Back:
     webs = { "Wuxiaworld" : Wuxiaworld, "Qidian" : Qidian, "Liberspark" : Liberspark }
-
+    config={"file":"txt","zip":False,"main_catalog":""}
     def __init__(self, *args):
         self.webs = Back.webs
         self.status_downloading = False
         self.class_ToFile = ToFile()
+        self.config=Back.config
         self.offline_data = Tools.load_obj("offline_data")
 
     def set_source_novel(self, select_source):
@@ -30,13 +31,16 @@ class Back:
         self.source.start()
 
     def all_title_and_link_from_translating(self):
-        if self.select_source in self.offline_data:
-            return self.offline_data[self.select_source]
-        else:
-            self.offline_data[self.select_source] = self.source.all_title_and_link_from_translating(
-            )
-            Tools.save_obj(self.offline_data, "offline_data")
-            return self.offline_data[self.select_source]
+        try:
+            if self.select_source in self.offline_data:
+                return self.offline_data[self.select_source]
+            else:
+                self.offline_data[self.select_source] = self.source.all_title_and_link_from_translating(
+                )
+                Tools.save_obj(self.offline_data, "offline_data")
+                return self.offline_data[self.select_source]
+        except AttributeError as e:
+            pass
 
     def change_main_catalog(self, path):
         self.class_ToFile.change_main_catalog(path)
